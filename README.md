@@ -1,4 +1,4 @@
-# Desarrollo de Software 2024
+# **DESAROLLO DE SOFTWARE - 2024 🚀**
 
 **UTN FRM**
 ---
@@ -6,19 +6,19 @@
 
 ---
 
-### 📝 TP1 - FrontEnd HTML
+### 📁 TP1 - FrontEnd HTML
 
 ---
 
-### 📝 TP2 - FrontEnd CSS
+### 📁 TP2 - FrontEnd CSS
 
 ---
 
-### 📝 TP3 - JPA e Hibernate
+### 📁 TP3 - JPA e Hibernate
 
 ---
 
-### 📝 TP4 - JPA y Envers
+### 📁 TP4 - JPA y Envers
 
 
 ---
