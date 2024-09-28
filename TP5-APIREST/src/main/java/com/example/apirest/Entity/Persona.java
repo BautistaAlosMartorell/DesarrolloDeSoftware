@@ -3,20 +3,20 @@ package com.example.apirest.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.envers.Audited;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "PERSONA")
 @Entity
 @Audited
-public class Persona {
+public class Persona extends Base{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name = "nombre")
     private String nombre;

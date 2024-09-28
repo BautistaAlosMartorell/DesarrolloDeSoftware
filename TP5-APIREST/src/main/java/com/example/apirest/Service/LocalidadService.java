@@ -1,15 +1,11 @@
 package com.example.apirest.Service;
 
+import com.example.apirest.Entity.Autor;
 import com.example.apirest.Entity.Localidad;
 
 import java.util.List;
 
-public interface LocalidadService {
+public interface LocalidadService extends BaseService<Localidad, Long>{
 
-    public List<Localidad> findAll() throws Exception;
-    public Localidad findById(Long id) throws Exception;
-    public Localidad save(Localidad entity) throws Exception;
-    public Localidad update(Long id, Localidad entity) throws Exception;
-    public boolean delete(Long id) throws Exception;
 
 }

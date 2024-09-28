@@ -1,75 +1,48 @@
 package com.example.apirest.Service;
 
 import com.example.apirest.Entity.Persona;
+import com.example.apirest.Repository.BaseRepository;
 import com.example.apirest.Repository.PersonaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PersonaServiceImpl implements PersonaService{
+public class PersonaServiceImpl extends BaseServiceImpl<Persona,Long> implements PersonaService{
 
     @Autowired
     private PersonaRepository personaRepository;
 
-    @Override
-    public List<Persona> findAll() throws Exception {
-        try {
-            return personaRepository.findAll();
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
+    public PersonaServiceImpl(BaseRepository<Persona,Long> baseRepository){
+        super(baseRepository);
     }
 
     @Override
-    public Persona findById(Long id) throws Exception {
+    public List<Persona> search(String filtro) throws Exception {
         try {
-            Optional<Persona> personaOptional = personaRepository.findById(id);
-            return personaOptional.orElseThrow(() -> new Exception("Persona no encontrada"));
+            //List<Persona> personas = personaRepository.findByNombreContainigOrApellidoContaining(filtro, filtro);
+            List<Persona> personas = personaRepository.searchNativo(filtro);
+            return personas;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-    }
 
+    }
     @Override
-    @Transactional
-    public Persona save(Persona entity) throws Exception {
+    public Page<Persona> search(String filtro, Pageable pageable) throws Exception {
         try {
-            return personaRepository.save(entity);
+            //List<Persona> personas = personaRepository.findByNombreContainigOrApellidoContaining(filtro, filtro);
+            Page<Persona> personas = personaRepository.searchNativo(filtro, pageable);
+            return personas;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-    }
 
-    @Override
-    @Transactional
-    public Persona update(Long id, Persona entity) throws Exception {
-        try {
-            Optional<Persona> personaOptional = personaRepository.findById(id);
-            Persona personaToUpdate = personaOptional.orElseThrow(() -> new Exception("Persona no encontrada"));
-            personaToUpdate = personaRepository.save(entity);
-            return personaToUpdate;
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
     }
-
-    @Override
-    @Transactional
-    public boolean delete(Long id) throws Exception {
-        try {
-            if (personaRepository.existsById(id)) {
-                personaRepository.deleteById(id);
-                return true;
-            } else {
-                throw new Exception("Persona no encontrada");
-            }
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
-    }
-
 }
+

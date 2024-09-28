@@ -1,16 +1,15 @@
 package com.example.apirest.Service;
 
-
 import com.example.apirest.Entity.Autor;
+import com.example.apirest.Repository.AutorRepository;
+import com.example.apirest.Repository.BaseRepository;
+import com.example.apirest.Repository.PersonaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+public interface AutorService extends BaseService<Autor, Long> {
 
-public interface AutorService {
 
-    public List<Autor> findAll() throws Exception;
-    public Autor findById(Long id) throws Exception;
-    public Autor save(Autor entity) throws Exception;
-    public Autor update(Long id, Autor entity) throws Exception;
-    public boolean delete(Long id) throws Exception;
 
 }
